@@ -108,7 +108,7 @@ def find_matching_quadrant(image_path, base_folder, output_folder):
 
 
 # Example usage:
-image_path = '/Users/diegosiqueira/Playground/numbers/tests/9999.png'
+image_path = '/Users/diegosiqueira/Playground/numbers/tests/.png'
 base_folder = '/Users/diegosiqueira/Playground/numbers/base'
 output_folder = '/Users/diegosiqueira/Playground/numbers/out'
 

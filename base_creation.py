@@ -1,6 +1,6 @@
 import cv2
-import numpy as np
 import os
+
 
 # Function to split the image into 4 quadrants, apply transformations, and save them
 def split_and_transform_image(image_path, output_dir):
@@ -11,16 +11,8 @@ def split_and_transform_image(image_path, output_dir):
         print(f"Error: Unable to load image from {image_path}")
         return
 
-    # Replace transparent background with white
-    if image.shape[2] == 4:  # Check if the image has an alpha channel
-        alpha_channel = image[:, :, 3]
-        _, mask = cv2.threshold(alpha_channel, 1, 255, cv2.THRESH_BINARY)
-        color = image[:, :, :3]
-        white_background = np.ones_like(color, dtype=np.uint8) * 255
-        image = cv2.bitwise_not(cv2.bitwise_not(color, mask=mask) + cv2.bitwise_not(white_background, mask=cv2.bitwise_not(mask)))
-
     # Get image dimensions
-    height, width, _ = image.shape
+    height, width = image.shape
 
     # Calculate the midpoint
     mid_x, mid_y = width // 2, height // 2
@@ -55,8 +47,9 @@ def split_and_transform_image(image_path, output_dir):
         cv2.imwrite(output_path, quadrant)
         print(f"Saved {name} quadrant to {output_path}")
 
+
 # Path to the input image
-image_path = '/tests/dcode-9999.png'
+image_path = '/Users/diegosiqueira/Playground/numbers/output.png'
 
 # Directory to save the quadrants
 output_dir = '/Users/diegosiqueira/Playground/numbers/out'
